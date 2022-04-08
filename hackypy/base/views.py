@@ -10,7 +10,7 @@ from django.db.models import Q
 def storyView(request):
 
     posts = Post.objects.all()
-    paginator = Paginator(posts, 10)
+    paginator = Paginator(posts, 5)
     page = request.GET.get('page')
     page_obj = paginator.get_page(page)
 
@@ -71,7 +71,7 @@ def replyComment(request, pk):
         )
         return redirect('create-comments', pk=post.id)
 
-    context = {'form':form, 'comment':comment}
+    context = {'form':form, 'comment':comment, 'post':post}
     return render(request, 'base/reply_form.jinja', context)
 
 

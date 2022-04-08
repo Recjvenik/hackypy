@@ -1,58 +1,89 @@
+{% include "base/main.jinja" %}
+
+{% block content %}
+
 {% if page == 'register'%}
-
-<h3> Create Account </h3>
-
-<div>
-    <form method="POST" action="">
-        {% csrf_token %}
-        {% for field in form %}
-        <div>
-            <label for="formInput#text">{{field.label}} </label>
+<br>
+<div class="ui middle aligned center aligned grid container">
+  <div class="ui card">
+    <div class="content ">
+      <div class="center aligned header">Create Account</div>
+      <br>
+      <form method="POST" action="">
+      {% csrf_token %}
+      {% for field in form %}
+        <div class="field">
+         <label for="formInput#text">{{field.label}} </label>
+          <div class="ui input">
             {{field}}
             {% for error in field.errors %}
             <p style="color: red;">{{error}}</p>
             {% endfor %}
           </div>
+        </div>
+        <br>
         {% endfor %}
-        <input type="submit" value="Create Account" />
-    </form>
-    <div>
-      <p>Already have an Account?</p>
-      <a href="{% url 'login' %}">Log In</a>
+        <br>
+        <input class="ui field teal submit button" type="submit" value="Create Account" />
+      </form>
+      <br>
     </div>
+  </div>
 </div>
 
-{% else %}
-    <h3> Login </h3>
-    <form method="POST" action="">
-        {% csrf_token %}
-        <div>
-          <label for="formInput#text">username: </label>
-          <input
-            id="formInput#text"
-            type="text"
-            name="username"
-          />
-        </div>
-        
-
-        <div>
-          <label for="formInput#password">password: </label>
-          <input
-            id="formInput#passowrd"
-            type="password"
-            name="password"
-            placeholder="••••••••"
-          />
-        </div>
-        
-
-        <input type="submit" value="Login" />
-    </form>
-    <div>
-      <p>Don't an Account?</p>
-      <a href="{% url 'register' %}">Sign Up</a>
+<br><br>
+<div class="ui middle aligned center aligned grid container">
+  <div class="ui card">
+    <div class="content ">
+      <div class="center aligned">Already have an Account?</div>
+      <br> 
+      <a class="ui field teal submit button" href="{% url 'login' %}">Log In</a>
     </div>
+  </div>
+</div>
 
+
+{% else %}
+
+<br>
+<div class="ui middle aligned center aligned grid container">
+  <div class="ui card">
+    <div class="content ">
+      <div class="center aligned header">Login</div>
+      <br>
+      <form method="POST" action="">
+      {% csrf_token %}
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input id="formInput#text" type="text" name="username" placeholder="username" />
+          </div>
+        </div>
+        <br>
+
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input id="formInput#passowrd" type="password" name="password" placeholder="password"/>
+          </div>
+        </div>
+        <br>
+        <input class="ui field teal submit button" type="submit" value="Login" />
+      </form>
+      <br>
+    </div>
+  </div>
+</div>
+<br><br>
+<div class="ui middle aligned center aligned grid container">
+  <div class="ui card">
+    <div class="content ">
+      <div class="center aligned">Don't have an Account ?</div>
+      <br> 
+      <a class="ui field teal submit button" href="{% url 'register' %}">Sign Up</a>
+    </div>
+  </div>
+</div>
 {% endif %}
 
+{% endblock %}

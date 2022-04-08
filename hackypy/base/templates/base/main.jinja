@@ -8,9 +8,21 @@
 </head>
 <body>
     {% include "base/navbar.jinja" %}
-    
+
     {% block content %}
 
     {% endblock content %}
 </body>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("myDIV");
+        if (x.innerHTML === "Vote") {
+            x.innerHTML = "unVote";
+        } else {
+            x.innerHTML = "Vote";
+        }
+    }
+</script>
+
 </html>

@@ -1,13 +1,21 @@
-{% include "base/navbar.jinja" %}
+{% include "base/main.jinja" %}
 
-<div>
-    {{comment.text}}
+{% block content %}
+<div class="ui container">
+    <div class="meta">
+        <span> {{comment.by}}  </span>
+        <span>{{comment.getDateTime|timesince}} ago </span>|
+        <span>on: <a href="{{ post.url }}"> {{post.title}}</a> </span>
+    </div>
+    <h4 class="ui header">{{comment.text}}</h4>
+    
+    <div class="ui form">
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input class="ui button" type="submit" value="reply" />
+        </form>
+    </div>
 </div>
 
-<div>
-    <form method="POST" action="">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="reply" />
-    </form>
-</div>
+{% endblock %}

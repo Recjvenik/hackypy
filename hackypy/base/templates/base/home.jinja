@@ -1,49 +1,44 @@
-{% include "base/navbar.jinja" %}
+{% include "base/main.jinja" %}
 
-<div>
-    <form action="{% url 'search' %}" method="GET">
-        <label> Search Hacker News: 
-        <input name="q" placeholder="Search " />
-        </label>
-    </form>
-</div>
+{% block content %}
+
 
 {% for post in posts %}
 
-<div>
-    <a href="{{ post.url }}"> {{post.title}}</a>
-</div> 
-
- <div>
-    <span>{{post.getVoteCount}} points </span> <span> by {{post.by}}  </span>
-    <span>{{post.getDateTime|timesince}} ago </span> |
-    {% if  post.getCommentCount == 0 %} 
-        <span> <a href="{% url 'create-comments' post.id %}">Discuss</a>
-    {% else %}
-        <span> <a href="{% url 'create-comments' post.id %}">{{ post.getCommentCount}} Comments</a>
-    {% endif %}
+<div class="ui divided items container">
+  <div class="item">
+    <div class="content">
+      <a class="header" href="{{ post.url }}"> {{post.title}}</a>
+      <div class="meta">
+        <span>{{post.getVoteCount}} points </span> <span> by {{post.by}}  </span>
+        <span>{{post.getDateTime|timesince}} ago </span> |
+        {% if  post.getCommentCount == 0 %} 
+            <span> <a href="{% url 'create-comments' post.id %}">Discuss</a>
+        {% else %}
+            <span> <a href="{% url 'create-comments' post.id %}">{{ post.getCommentCount}} Comments</a>
+        {% endif %}
+      </div>
+      <div class="extra">
+      
+        <div class="ui label">
+            <a href="{% url 'vote' post.id  %}">Vote</a>
+            <a href="{% url 'vote' post.id  %}">UnVote</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div>
-    
-        <a href="{% url 'vote' post.id  %}">Vote</a>
-
-        <a href="{% url 'vote' post.id  %}">UnVote</a>
-  
-</div>
-<hr>
 {% endfor %}
-{% if posts.has_next %}
-    <a href="?page={{ posts.next_page_number }}">More</a>
-{% endif %}
 
-<script>
-function myFunction() {
-  var x = document.getElementById("myDIV");
-  if (x.innerHTML === "Vote") {
-    x.innerHTML = "unVote";
-  } else {
-    x.innerHTML = "Vote";
-  }
-}
-</script>
+<div class="ui items container">
+  {% if posts.has_next %}
+      <a class="ui right labeled icon button" href="?page={{ posts.next_page_number }}">
+        <i class="right arrow icon"></i> More...</a>
+  {% endif %}
+</div>
+
+{% endblock %}
+
+
+

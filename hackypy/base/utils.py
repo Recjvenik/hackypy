@@ -60,7 +60,6 @@ def newsData1():
                         post = post,
                     )
                     comment.save()
-                    
 
                 if 'kids' in c_data:
                     walk(c_data, post, comment)

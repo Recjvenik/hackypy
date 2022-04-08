@@ -1,9 +1,14 @@
-{% include "base/navbar.jinja" %}
+{% include "base/main.jinja" %}
 
-<div>
-    <form method="POST" action="">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Submit" />
-    </form>
+{% block content %}
+
+<div class="ui container">
+    <div class="ui form">
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input class="ui button" type="submit" value="Submit" />
+        </form>
+    </div>
 </div>
+{% endblock %}

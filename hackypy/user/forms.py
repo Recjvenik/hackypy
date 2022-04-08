@@ -7,3 +7,4 @@ class UserForm(UserCreationForm):
     class Mets:
         models = User
         fields = ['username', 'password1', 'password2']
+    

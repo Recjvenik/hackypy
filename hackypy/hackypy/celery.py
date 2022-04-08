@@ -19,7 +19,7 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     "every-1-hr" : {
         'task' : 'base.utils.newsData1',
-        'schedule' : 3600,
+        'schedule' : 15,
     }
 }
 
