@@ -1,0 +1,58 @@
+{% if page == 'register'%}
+
+<h3> Create Account </h3>
+
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        {% for field in form %}
+        <div>
+            <label for="formInput#text">{{field.label}} </label>
+            {{field}}
+            {% for error in field.errors %}
+            <p style="color: red;">{{error}}</p>
+            {% endfor %}
+          </div>
+        {% endfor %}
+        <input type="submit" value="Create Account" />
+    </form>
+    <div>
+      <p>Already have an Account?</p>
+      <a href="{% url 'login' %}">Log In</a>
+    </div>
+</div>
+
+{% else %}
+    <h3> Login </h3>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div>
+          <label for="formInput#text">username: </label>
+          <input
+            id="formInput#text"
+            type="text"
+            name="username"
+          />
+        </div>
+        
+
+        <div>
+          <label for="formInput#password">password: </label>
+          <input
+            id="formInput#passowrd"
+            type="password"
+            name="password"
+            placeholder="••••••••"
+          />
+        </div>
+        
+
+        <input type="submit" value="Login" />
+    </form>
+    <div>
+      <p>Don't an Account?</p>
+      <a href="{% url 'register' %}">Sign Up</a>
+    </div>
+
+{% endif %}
+

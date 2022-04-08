@@ -1,0 +1,48 @@
+{% extends "base/main.jinja" %}
+
+{% block content %}
+
+{% load mptt_tags %}
+
+
+<div class="ui container">
+    <h4 class="ui header"><a href = "{{ post.url }}"> {{ post.title }} </a></h4>
+    <div class="ui form">
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input class="ui button" type="submit" value="add comment" />
+        </form>
+    </div>
+</div>
+
+<br><br>
+
+{% recursetree comments %}
+
+    <div class="ui container">
+        <div class="ui comments">
+            <div class="comment">
+                <div class="content">
+                    <a class="author">{{node.by}}</a>
+                    <div class="metadata">
+                        <div class="date">{{node.getDateTime|timesince}} ago</div>
+                    </div>
+                    <div class="text">{{node.text}}</div>
+                    <div class="actions">
+                        <a class="reply" href="{% url 'reply-comments' node.id %}">Reply</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% if not node.is_leaf_node %}
+    <ul class="children">
+        {{ children }} 
+    </ul>
+{% endif %}
+
+{% endrecursetree %}
+
+{% endblock  %}
