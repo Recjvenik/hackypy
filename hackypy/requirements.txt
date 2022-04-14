@@ -1,6 +1,0 @@
-Django
-requests
-Jinja2
-django-mptt
-celery
-django-celery-beat
