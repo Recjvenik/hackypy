@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-zen_^wkajvth-jwx@mx6cgt$1vd)cmn#_udy3$xzsp91w(-n!3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['hackypy.herokuapp.com', '127.0.0.1', '.vercel.app' , '*']
+ALLOWED_HOSTS = ['hackypy.herokuapp.com', '127.0.0.1', '.vercel.app' , 'web-production-fdfd.up.railway.app/']
 
 
 # Application definition
@@ -144,7 +144,3 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Kolkata'
-
-CSRF_TRUSTED_ORIGINS = [
-    'https://web-production-fdfd.up.railway.app/'
-]
