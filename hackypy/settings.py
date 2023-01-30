@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-zen_^wkajvth-jwx@mx6cgt$1vd)cmn#_udy3$xzsp91w(-n!3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['hackypy.herokuapp.com', '127.0.0.1', '.vercel.app' , '*']
 
